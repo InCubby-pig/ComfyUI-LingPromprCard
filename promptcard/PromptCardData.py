@@ -5835,7 +5835,7 @@ PROMPT_CARD_DATA = {
                         'title': '蹲下自拍-女孩穿着暴露的衣服,蹲下踮脚打开双腿,双手举起双v姿势,淫荡的表情吐着舌头看向镜头,淫水顺着内裤留下',
                         'group_title': '趴下翘臀将内裤拉在一边扒开自己小穴展示自拍',
                         'group_path': '趴下翘臀将内裤拉在一边扒开自己小穴展示自拍',
-                        'prompt_pos': 'full body, 1girl, solo, looking at viewer, torogao, full-face blush, heavy breathing, open mouth, tongue out, saliva trail, alternate costume, revealing clothes, squatting, spread legs, tiptoes, hands up, double v, pussy juice, pussy juice drip through clothes, pussy pussy juice stain, pussy juice trail, dynamic_angle, dutch angle, fake phone screenshot, fake screenshot, ',
+                        'prompt_pos': 'full body, 1girl, solo, looking at viewer, torogao, full-face blush, heavy breathing, open mouth, tongue out, saliva trail, alternate costume, revealing clothes, squatting, spread legs, tiptoes, hands up, double v, pussy juice, pussy juice drip through clothes, pussy, pussy juice stain, pussy juice trail, dynamic_angle, dutch angle, fake phone screenshot, fake screenshot, ',
                         'prompt_neg': '',
                     },
                     {
@@ -6358,14 +6358,6 @@ PROMPT_CARD_DATA = {
                         'prompt_neg': '',
                     },
                     {
-                        'id': 'r18_scene_068ad22f21ec',
-                        'title': '十指相扣挤胸传教士-基础版',
-                        'group_title': '第一人称v字手臂挤胸十指相扣牵手纯爱正常位\\传教士体位',
-                        'group_path': '第一人称v字手臂挤胸十指相扣牵手纯爱正常位\\传教士体位 / nsfw, hetero, happy sex,',
-                        'prompt_pos': 'nsfw, hetero, happy sex, ',
-                        'prompt_neg': '',
-                    },
-                    {
                         'id': 'r18_scene_df00a10bdac2',
                         'title': '十指相扣挤胸传教士-高潮表情',
                         'group_title': '第一人称v字手臂挤胸十指相扣牵手纯爱正常位\\传教士体位',
@@ -6393,8 +6385,8 @@ PROMPT_CARD_DATA = {
                         'id': 'r18_scene_3ee15b5058d2',
                         'title': '十指相扣挤胸传教士-拔出外射',
                         'group_title': '第一人称v字手臂挤胸十指相扣牵手纯爱正常位\\传教士体位',
-                        'group_path': '第一人称v字手臂挤胸十指相扣牵手纯爱正常位\\传教士体位 / ppenis,pull out,erection,mutual orgasm,pussy,ejaculation,cum,cum on body,cum on belly,cum on breasts,missionary,',
-                        'prompt_pos': 'ppenis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, ',
+                        'group_path': '第一人称v字手臂挤胸十指相扣牵手纯爱正常位\\传教士体位 / penis,pull out,erection,mutual orgasm,pussy,ejaculation,cum,cum on body,cum on belly,cum on breasts,missionary,',
+                        'prompt_pos': 'penis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, ',
                         'prompt_neg': '',
                     },
                     {
@@ -6442,7 +6434,7 @@ PROMPT_CARD_DATA = {
                         'title': '抓腕挤胸传教士-外射高潮',
                         'group_title': '第一人称v字手臂挤胸抓腕纯爱正常位\\传教士体位',
                         'group_path': '第一人称v字手臂挤胸抓腕纯爱正常位\\传教士体位 / 外射高潮差分',
-                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, v arms, breasts squeezed together, pov, pov crotch, pov hands, holding another's wrists, ppenis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
+                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, v arms, breasts squeezed together, pov, pov crotch, pov hands, holding another's wrists, penis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
                         'prompt_neg': '',
                     },
                     {
@@ -6474,7 +6466,7 @@ PROMPT_CARD_DATA = {
                         'title': '抓腿传教士-外射高潮',
                         'group_title': '第一人称w字手臂床单抓握抓腿纯爱正常位\\传教士体位',
                         'group_path': '第一人称w字手臂床单抓握抓腿纯爱正常位\\传教士体位 / 外射高潮差分',
-                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, hands on another's thighs, ppenis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
+                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, hands on another's thighs, penis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
                         'prompt_neg': '',
                     },
                     {
@@ -6506,7 +6498,7 @@ PROMPT_CARD_DATA = {
                         'title': '抓腰传教士-外射高潮',
                         'group_title': '第一人称w字手臂床单抓握抓腰纯爱正常位\\传教士体位',
                         'group_path': '第一人称w字手臂床单抓握抓腰纯爱正常位\\传教士体位 / 外射高潮差分',
-                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, hands on another's waist, ppenis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
+                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, hands on another's waist, penis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
                         'prompt_neg': '',
                     },
                     {
@@ -6538,7 +6530,7 @@ PROMPT_CARD_DATA = {
                         'title': '十指相扣传教士-外射高潮',
                         'group_title': '第一人称w字手臂十指相扣纯爱正常位\\传教士体位',
                         'group_path': '第一人称w字手臂十指相扣纯爱正常位\\传教士体位 / 外射高潮差分',
-                        'prompt_pos': 'nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, pov, pov crotch, pov hands, holding hands, interlocked fingers, yukadon, ppenis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from above, dynamic angle, ',
+                        'prompt_pos': 'nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, pov, pov crotch, pov hands, holding hands, interlocked fingers, yukadon, penis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from above, dynamic angle, ',
                         'prompt_neg': '',
                     },
                     {
@@ -6570,7 +6562,7 @@ PROMPT_CARD_DATA = {
                         'title': '揉胸传教士-外射高潮',
                         'group_title': '第一人称w字手臂床单抓握揉胸纯爱正常位\\传教士体位',
                         'group_path': '第一人称w字手臂床单抓握揉胸纯爱正常位\\传教士体位 / 外射高潮差分',
-                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, grabbing another's breast, ppenis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
+                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, grabbing another's breast, penis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
                         'prompt_neg': '',
                     },
                     {
@@ -6602,7 +6594,7 @@ PROMPT_CARD_DATA = {
                         'title': '单手揉胸传教士-外射高潮',
                         'group_title': '第一人称w字手臂床单抓握单手揉胸纯爱正常位\\传教士体位',
                         'group_path': '第一人称w字手臂床单抓握单手揉胸纯爱正常位\\传教士体位 / 外射高潮差分',
-                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, (one-handed grabbing another's breast:1.2), (unaligned breasts:1.2), hand on another's thigh, ppenis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
+                        'prompt_pos': "nsfw, hetero, happy sex, 1girl, solo focus, torogao, wince, blush, looking at viewer, open mouth, saliva, heavy breathing, nude, on back, spread legs, m legs, hands up, w arms, sheet grab, pov, pov crotch, pov hands, (one-handed grabbing another's breast:1.2), (unaligned breasts:1.2), hand on another's thigh, penis, pull out, erection, mutual orgasm, pussy, ejaculation, cum, cum on body, cum on belly, cum on breasts, missionary, trembling, heart, sweat, on bed, from below, dynamic angle, ",
                         'prompt_neg': '',
                     },
                     {
@@ -7658,7 +7650,7 @@ PROMPT_CARD_DATA = {
                         'title': '抓住阴茎引导戳胸-基础版',
                         'group_title': 'Pov',
                         'group_path': 'Pov',
-                        'prompt_pos': 'Sex, ',
+                        'prompt_pos': 'NSFW, hetero, happy sex, 1girl, white hair, happy, half-closed eyes, blush, light smile, heavy breathing, looking at viewer, kneeling, hand up, penis grab, pov, pov crotch, penis, erection, (penis to breast:1.3), breast poke, unaligned breasts, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8075,7 +8067,7 @@ PROMPT_CARD_DATA = {
                         'title': 'NTR前戏',
                         'group_title': '前戏',
                         'group_path': '前戏',
-                        'prompt_pos': "nsfw, hetero, netorare, cowboy shot, 1girl, solo focus, scowl, blsh, looking up, looking at another, (struggling:1.1), standing, hands up, hands on another's chest, pushing, 1boy, dark-skinned male, faceless, gyaruo, hug, arms around waist, forced kiss, from side, ",
+                        'prompt_pos': "nsfw, hetero, netorare, cowboy shot, 1girl, solo focus, scowl, blush, looking up, looking at another, (struggling:1.1), standing, hands up, hands on another's chest, pushing, 1boy, dark-skinned male, faceless, gyaruo, hug, arms around waist, forced kiss, from side, ",
                         'prompt_neg': '(arms around neck:1.3), ',
                     },
                     {
@@ -8185,14 +8177,6 @@ PROMPT_CARD_DATA = {
                         'group_title': '第三人称',
                         'group_path': '第三人称',
                         'prompt_pos': "NSFW, netorare, hetero, frottage, cowboy shot, 1girl, endured_face, restrained, blush, drunk, looking at viewer, clothes lift, panties, standing, hand up, holding phone, smartphone, talking on phone, 1boy, dark-skinned male, penis, erection, buttjob, grabbing from behind, grabbing another's breast, groping, fingering, pussy juice, trembling, dynamic pose, motion_lines, (sound effects, heart), from side, dynamic_angle, dutch angle, ",
-                        'prompt_neg': '',
-                    },
-                    {
-                        'id': 'r18_scene_ede4b34fde12',
-                        'title': '通话中被后揉胸指交素股-基础版',
-                        'group_title': '第三人称',
-                        'group_path': '第三人称',
-                        'prompt_pos': 'Sex, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8781,7 +8765,7 @@ PROMPT_CARD_DATA = {
                         'title': '公园露出长椅坐下0721',
                         'group_title': '无人公共场合露出',
                         'group_path': '无人公共场合露出 / 掀裙揉胸差分',
-                        'prompt_pos': 'public indecency, exhibitionism, 1girl, solo, torogao, blush, heavy breathing, moaning, alternate costume, nude, black choker, leash, open coat, breasts, sitting, leaning back, female masturbation, (hand up, grabbing own breast, fingering, trembling, pussy juice, pussy pussy juice trail, dynamic pose, outdoors, park, park bench, tree, lambent light, lamppost, night, dark, (black background:0.8), from above, ',
+                        'prompt_pos': 'public indecency, exhibitionism, 1girl, solo, torogao, blush, heavy breathing, moaning, alternate costume, nude, black choker, leash, open coat, breasts, sitting, leaning back, female masturbation, (hand up, grabbing own breast, fingering, trembling, pussy juice, pussy, pussy juice trail, dynamic pose, outdoors, park, park bench, tree, lambent light, lamppost, night, dark, (black background:0.8), from above, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8805,7 +8789,7 @@ PROMPT_CARD_DATA = {
                         'title': '赌场内,少女双腿交叉夹紧藏在里面的振动器,振动器的线直达大腿丝袜内固定,我按下开关,少女被迫咬牙忍耐着快感,身体不断颤抖',
                         'group_title': '振动器\\跳蛋调教',
                         'group_path': '振动器\\跳蛋调教',
-                        'prompt_pos': '1girl, solo focus, blush, sideways glance, looking at viewer, parted lips, clenched teeth, struggling, alternate_costume, evening gown, halterneck, red dress, True dress, backless dress, side slit, bare shoulders, cleavage, sideboob, o-ring, black thighhighs, red gloves, thigh strap, no bra, covered nipples, areola slip, sex toy, vibrator, vibrator cord, vibrator in thighhighs, sweat, trembling, sitting, sitting on chair, crossed legs, thighs, feet out of frame, playing card, pov hand, remote control, viewer holding remote control, casino, table, casino card table, depth of field, blurry, blurry background, bokeh, from side, ',
+                        'prompt_pos': '1girl, solo focus, blush, sideways glance, looking at viewer, parted lips, clenched teeth, struggling, alternate_costume, evening gown, halterneck, red dress, tube dress, backless dress, side slit, bare shoulders, cleavage, sideboob, o-ring, black thighhighs, red gloves, thigh strap, no bra, covered nipples, areola slip, sex toy, vibrator, vibrator cord, vibrator in thighhighs, sweat, trembling, sitting, sitting on chair, crossed legs, thighs, feet out of frame, playing card, pov hand, remote control, viewer holding remote control, casino, table, casino card table, depth of field, blurry, blurry background, bokeh, from side, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8821,7 +8805,7 @@ PROMPT_CARD_DATA = {
                         'title': '振动器室外露出调教(蹲下开腿双v)',
                         'group_title': 'pov',
                         'group_path': 'pov',
-                        'prompt_pos': 'public indecency, exhibitionism, full body, 1girl, solo, looking at viewer, torogao, full-face blush, heavy breathing, moaning, open mouth, tongue out, saliva trail, nude, multiple vibrators, vibrator on nipple, vibrator in thigh strap, vibrator in thighhighs, vibrator under panties, vibrator cord, remote control vibrator, public vibrator, squatting, spread legs, tiptoes, leaning back, hands up, double v, pussy juice, pussy juice drip through clothes, pussy pussy juice stain, pussy juice trail, wet, sweat, nervous sweating, dynamic pose, trembling, motion_lines, (sound effects, heart), pov, pov hands, holding remote control, front view, from above, dynamic_angle, dutch angle, outdoors, against wall, night, dark, black background, ',
+                        'prompt_pos': 'public indecency, exhibitionism, full body, 1girl, solo, looking at viewer, torogao, full-face blush, heavy breathing, moaning, open mouth, tongue out, saliva trail, nude, multiple vibrators, vibrator on nipple, vibrator in thigh strap, vibrator in thighhighs, vibrator under panties, vibrator cord, remote control vibrator, public vibrator, squatting, spread legs, tiptoes, leaning back, hands up, double v, pussy juice, pussy juice drip through clothes, pussy, pussy juice stain, pussy juice trail, wet, sweat, nervous sweating, dynamic pose, trembling, motion_lines, (sound effects, heart), pov, pov hands, holding remote control, front view, from above, dynamic_angle, dutch angle, outdoors, against wall, night, dark, black background, ',
                         'prompt_neg': '',
                     },
                     {
@@ -9147,7 +9131,7 @@ PROMPT_CARD_DATA = {
                         'title': '仰躺淫纹强制发情0721至高潮',
                         'group_title': '淫纹发情0721',
                         'group_path': '淫纹发情0721',
-                        'prompt_pos': 'forced, forced orgasm, female masturbation, 1girl, solo, in heat, torogao, blush, full-face blush, restrained, heavy breathing, body blush, full-body blush, wet, nervous sweating, sweat, pubic tattoo, (glowing tattoo:1.3), lying, on back, spread legs, grabbing own breast, fingering, pussy juice, pussy juice trail, pussy pussy juice stain, dynamic pose, trembling, motion_lines, (sound effects, heart), dynamic_angle, dutch angle, on bed, night, dark, bedroom, ',
+                        'prompt_pos': 'forced, forced orgasm, female masturbation, 1girl, solo, in heat, torogao, blush, full-face blush, restrained, heavy breathing, body blush, full-body blush, wet, nervous sweating, sweat, pubic tattoo, (glowing tattoo:1.3), lying, on back, spread legs, grabbing own breast, fingering, pussy juice, pussy juice trail, pussy, pussy juice stain, dynamic pose, trembling, motion_lines, (sound effects, heart), dynamic_angle, dutch angle, on bed, night, dark, bedroom, ',
                         'prompt_neg': '',
                     },
                     {
@@ -9291,19 +9275,11 @@ PROMPT_CARD_DATA = {
                 'label': '其他特殊xp\\play类 / 药物姦\\药物play',
                 'items': [
                     {
-                        'id': 'r18_scene_2b0c189ff135',
-                        'title': '药物姦事后-POV',
-                        'group_title': '药物姦事后',
-                        'group_path': '药物姦事后',
-                        'prompt_pos': 'Pov, ',
-                        'prompt_neg': '',
-                    },
-                    {
                         'id': 'r18_scene_eebf650dd55d',
                         'title': '药物姦事后-事后现场',
                         'group_title': '药物姦事后',
                         'group_path': '药物姦事后',
-                        'prompt_pos': 'nsfw, hetero, drugged, aphrodisiac, 1girl, solo focus, in heat, full-face blush, ahegao, cross-eyed, looking at viewer, exhausted, heavy breathing, completely nude, steaming body, body blush, tally, body writing, on back, bowlegged pose, sheet grab, pov, pov crotch, penis, pull out, precum, precum drip, (after sex:1.2), after rape, after vaginal, after anal, stain, cum on hair, facial, cum on breasts, cum on body, cum on arm, cum on armpits, cum on stomach, cum in pussy, cum in ass, cumdrip, (cum on thighs:1.1), cum on legs, cum pool, bukkake, pussy juice stain, pussy juice puddle, trembling, twitching, (too many sex toys:1.2), vibrator, hitachi magic wand, dildo, anal beads, syringe, unworn clothes, unworn legwear, stained clothes, dutch angle, dark, chiaroscuro, shadow, ',
+                        'prompt_pos': 'pov, nsfw, hetero, drugged, aphrodisiac, 1girl, solo focus, in heat, full-face blush, ahegao, cross-eyed, looking at viewer, exhausted, heavy breathing, completely nude, steaming body, body blush, tally, body writing, on back, bowlegged pose, sheet grab, pov, pov crotch, penis, pull out, precum, precum drip, (after sex:1.2), after rape, after vaginal, after anal, stain, cum on hair, facial, cum on breasts, cum on body, cum on arm, cum on armpits, cum on stomach, cum in pussy, cum in ass, cumdrip, (cum on thighs:1.1), cum on legs, cum pool, bukkake, pussy juice stain, pussy juice puddle, trembling, twitching, (too many sex toys:1.2), vibrator, hitachi magic wand, dildo, anal beads, syringe, unworn clothes, unworn legwear, stained clothes, dutch angle, dark, chiaroscuro, shadow, ',
                         'prompt_neg': '',
                     },
                 ],
