@@ -4287,7 +4287,7 @@ PROMPT_CARD_DATA = {
                         'title': '魅魔全身袜情趣cos服-全身黑丝+丁字裤比基尼+透视披肩',
                         'group_title': '魅魔',
                         'group_path': '魅魔',
-                        'prompt_pos': 'alternate costume, ((succubus)), fake horns, collar, detached collar, heart collar, black choker, black capelet, see-through capelet, see-through cleavage, black bodystocking, bikini under bodystocking, bikini visible through clothes, thong bikini, fake wings, demon wings, pubic tattoo, glowing tattoo, waist cape, heart-shaped thigh strap, succubus tail, {[ waist cape, showgirl skirt, ',
+                        'prompt_pos': 'alternate costume, ((succubus)), fake horns, collar, detached collar, heart collar, black choker, black capelet, see-through capelet, see-through cleavage, black bodystocking, bikini under bodystocking, bikini visible through clothes, thong bikini, fake wings, demon wings, pubic tattoo, glowing tattoo, waist cape, heart-shaped thigh strap, succubus tail, waist cape, showgirl skirt, ',
                         'prompt_neg': '',
                     },
                     {
@@ -4343,7 +4343,7 @@ PROMPT_CARD_DATA = {
                         'title': '侧面露出情趣神官服',
                         'group_title': '祭司\\神官',
                         'group_path': '祭司\\神官',
-                        'prompt_pos': 'alternate costume, priestess, revealing outfit, backless outfit, veil, cross necklace, capelet, gown, side cutout, sideboob, cleavage cutout, cleavage, pelvic curtain, waist cape, bridal gauntlets, gold trim, white thighhighs, lace-trimmed legwear, hand up, clenched hand, holding staff, mage staff, （cleavage cutout, ',
+                        'prompt_pos': 'alternate costume, priestess, revealing outfit, backless outfit, veil, cross necklace, capelet, gown, side cutout, sideboob, cleavage cutout, cleavage, pelvic curtain, waist cape, bridal gauntlets, gold trim, white thighhighs, lace-trimmed legwear, hand up, clenched hand, holding staff, mage staff, cleavage cutout, ',
                         'prompt_neg': '',
                     },
                     {
@@ -4351,7 +4351,7 @@ PROMPT_CARD_DATA = {
                         'title': '透视情趣神官服',
                         'group_title': '祭司\\神官',
                         'group_path': '祭司\\神官',
-                        'prompt_pos': 'alternate costume, priestess, see-through outfit, veil, cross necklace, capelet, (see-through capelet:1.1), gown, see-through cleavage, covered navel, pubic tattoo, glowing tattoo, bra visible through clothes, panties visible through clothes, lace-trimmed panties, pelvic curtain, waist cape, (see-through silhouette:1.2), detached_sleeves, see-through sleeves, long sleeves, gold trim, white thighhighs, lace-trimmed legwear, hand up, clenched hand, holding staff, mage staff, (bra visible through clothes, areola visible through clothes, pussy visible through clothes, ',
+                        'prompt_pos': 'alternate costume, priestess, see-through outfit, veil, cross necklace, capelet, (see-through capelet:1.1), gown, see-through cleavage, covered navel, pubic tattoo, glowing tattoo, bra visible through clothes, panties visible through clothes, lace-trimmed panties, pelvic curtain, waist cape, (see-through silhouette:1.2), detached_sleeves, see-through sleeves, long sleeves, gold trim, white thighhighs, lace-trimmed legwear, hand up, clenched hand, holding staff, mage staff, bra visible through clothes, areola visible through clothes, pussy visible through clothes, ',
                         'prompt_neg': '',
                     },
                     {
@@ -4359,7 +4359,7 @@ PROMPT_CARD_DATA = {
                         'title': '一键三帘式情趣神官服',
                         'group_title': '祭司\\神官',
                         'group_path': '祭司\\神官',
-                        'prompt_pos': 'alternate costume, priestess, revealing outfit, veil, cross necklace, capelet, breast curtains, navel, groin, pelvic curtain, waist cape, (see-through silhouette:1.1), panties visible through clothes, bridal gauntlets, gold trim, white thighhighs, lace-trimmed legwear, hand up, clenched hand, holding staff, mage staff, (  (see-through silhouette:1.1), ',
+                        'prompt_pos': 'alternate costume, priestess, revealing outfit, veil, cross necklace, capelet, breast curtains, navel, groin, pelvic curtain, waist cape, (see-through silhouette:1.1), panties visible through clothes, bridal gauntlets, gold trim, white thighhighs, lace-trimmed legwear, hand up, clenched hand, holding staff, mage staff, (see-through silhouette:1.1), ',
                         'prompt_neg': '',
                     },
                     {
@@ -7482,7 +7482,7 @@ PROMPT_CARD_DATA = {
                         'title': '第三人称-动态镜头',
                         'group_title': '第三人称',
                         'group_path': '第三人称',
-                        'prompt_pos': '{    dynamic_angle, dutch angle, ',
+                        'prompt_pos': 'dynamic_angle, dutch angle, ',
                         'prompt_neg': '',
                     },
                     {
@@ -7642,7 +7642,7 @@ PROMPT_CARD_DATA = {
                         'title': '抓住阴茎引导戳胸-完整构图',
                         'group_title': 'Pov',
                         'group_path': 'Pov',
-                        'prompt_pos': 'NSFW, hetero, happy sex, 1girl, white hair, happy, half-closed eyes, blush, light smile, heavy breathing, looking at viewer, kneeling, hand up, penis grab, pov, pov crotch, penis, erection, (penis to breast:1.3), breast poke, unaligned breasts, (dynamic pose, motion_lines, (sound effects, heart), ',
+                        'prompt_pos': 'NSFW, hetero, happy sex, 1girl, white hair, happy, half-closed eyes, blush, light smile, heavy breathing, looking at viewer, kneeling, hand up, penis grab, pov, pov crotch, penis, erection, (penis to breast:1.3), breast poke, unaligned breasts, dynamic pose, motion_lines, (sound effects, heart), ',
                         'prompt_neg': '',
                     },
                     {
@@ -7727,7 +7727,7 @@ PROMPT_CARD_DATA = {
                         'title': '仰躺睡姦袭胸-揉胸',
                         'group_title': 'Pov',
                         'group_path': 'Pov / 前戏',
-                        'prompt_pos': "sleep molestation, hetero, upper_body, 1girl, alternate costume, nightgown, bow, lace trim, long sleeves, see-through sleeves, see-through silhouette, clothes pull, breasts out, blush, open mouth, heavy breathing, facing_away, lying, on back, hands up, sleeping, squeans, pov, pov hands, grabbing another's breast, groping, unaligned breasts, bouncing breasts, dynamic pose, motion_lines, (sound effects, heart), under covers, on bed, bedroom, dark, night, (unaligned breasts, ",
+                        'prompt_pos': "sleep molestation, hetero, upper_body, 1girl, alternate costume, nightgown, bow, lace trim, long sleeves, see-through sleeves, see-through silhouette, clothes pull, breasts out, blush, open mouth, heavy breathing, facing_away, lying, on back, hands up, sleeping, squeans, pov, pov hands, grabbing another's breast, groping, unaligned breasts, bouncing breasts, dynamic pose, motion_lines, (sound effects, heart), under covers, on bed, bedroom, dark, night, unaligned breasts, ",
                         'prompt_neg': '',
                     },
                     {
@@ -8059,7 +8059,7 @@ PROMPT_CARD_DATA = {
                         'title': '第三人称-动态镜头',
                         'group_title': '第三人称',
                         'group_path': '第三人称',
-                        'prompt_pos': '{    dynamic_angle, dutch angle, ',
+                        'prompt_pos': 'dynamic_angle, dutch angle, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8765,7 +8765,7 @@ PROMPT_CARD_DATA = {
                         'title': '公园露出长椅坐下0721',
                         'group_title': '无人公共场合露出',
                         'group_path': '无人公共场合露出 / 掀裙揉胸差分',
-                        'prompt_pos': 'public indecency, exhibitionism, 1girl, solo, torogao, blush, heavy breathing, moaning, alternate costume, nude, black choker, leash, open coat, breasts, sitting, leaning back, female masturbation, (hand up, grabbing own breast, fingering, trembling, pussy juice, pussy, pussy juice trail, dynamic pose, outdoors, park, park bench, tree, lambent light, lamppost, night, dark, (black background:0.8), from above, ',
+                        'prompt_pos': 'public indecency, exhibitionism, 1girl, solo, torogao, blush, heavy breathing, moaning, alternate costume, nude, black choker, leash, open coat, breasts, sitting, leaning back, female masturbation, hand up, grabbing own breast, fingering, trembling, pussy juice, pussy, pussy juice trail, dynamic pose, outdoors, park, park bench, tree, lambent light, lamppost, night, dark, (black background:0.8), from above, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8842,7 +8842,7 @@ PROMPT_CARD_DATA = {
                         'title': '多人事后站立双v手势摄影录制',
                         'group_title': '一女多观众',
                         'group_path': '一女多观众',
-                        'prompt_pos': 'cowboy shot, 1girl, solo focus, nude, multiple condoms, condom in mouth, used condom, condom belt, condom thigh strap, tally, hands up, double v, after sex, wet, sweat, nervous sweating, cum overflow, cum in pussy, cum on breasts, facial, cum on hair, cum on belly, (cum on thighs:1.1), cum on thighhighs, (cum on legs:1.1), (censored identity:1.3), censored eyes, recording, multiple others, surrounded, surrounded by penises, black background, dark, (surrounded by penises, multiple penises, ',
+                        'prompt_pos': 'cowboy shot, 1girl, solo focus, nude, multiple condoms, condom in mouth, used condom, condom belt, condom thigh strap, tally, hands up, double v, after sex, wet, sweat, nervous sweating, cum overflow, cum in pussy, cum on breasts, facial, cum on hair, cum on belly, (cum on thighs:1.1), cum on thighhighs, (cum on legs:1.1), (censored identity:1.3), censored eyes, recording, multiple others, surrounded, surrounded by penises, black background, dark, surrounded by penises, multiple penises, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8850,7 +8850,7 @@ PROMPT_CARD_DATA = {
                         'title': '大街上途中假大吊自慰高潮',
                         'group_title': '一女多观众',
                         'group_path': '一女多观众',
-                        'prompt_pos': 'public indecency, exhibitionism, NSFW, 1girl, solo focus, heart in eye, blush, exhausted, endured_face, heavy breathing, steam, steaming body, looking at viewer, head_down, looking_down, standing, knees together feet apart, hand on own thigh, dildo under clothes, (dildo under panties:1.2), sex machine, see-through panties, see-through silhouette, panty pull, thighs, groin, pussy juice, pussy juice drip through clothes, pussy juice puddle, female masturbation, female ejaculation, female orgasm, trembling, dynamic pose, motion_lines, (sound effects, heart), multiple others, crowd, surrounded, (from_below:0.6), dynamic_angle, dutch angle, downtown, road, architecture, (panty pull, ',
+                        'prompt_pos': 'public indecency, exhibitionism, NSFW, 1girl, solo focus, heart in eye, blush, exhausted, endured_face, heavy breathing, steam, steaming body, looking at viewer, head_down, looking_down, standing, knees together feet apart, hand on own thigh, dildo under clothes, (dildo under panties:1.2), sex machine, see-through panties, see-through silhouette, panty pull, thighs, groin, pussy juice, pussy juice drip through clothes, pussy juice puddle, female masturbation, female ejaculation, female orgasm, trembling, dynamic pose, motion_lines, (sound effects, heart), multiple others, crowd, surrounded, (from_below:0.6), dynamic_angle, dutch angle, downtown, road, architecture, panty pull, ',
                         'prompt_neg': '',
                     },
                     {
@@ -8990,7 +8990,7 @@ PROMPT_CARD_DATA = {
                         'title': '触手缠绕全身',
                         'group_title': '强制触手姦',
                         'group_path': '强制触手姦',
-                        'prompt_pos': "tentacles, 1girl, solo, surprised, flying sweatdrops, blush, flustered, restrained, closed mouth, looking at viewer, no bra, no panties, hanging, hanging legs, midair, clothes pull, hands up, tentacles under clothes, skirt lift, knees together feet apart, assisted exposure, tentacle grab, tentacles around legs, tentacles around body, tentacles around breast, grabbing another's breast, dynamic pose, motion_lines, (sound effects, heart), tentacle pit, dark, (black background:0.6), (wet, slime (substance), ",
+                        'prompt_pos': "tentacles, 1girl, solo, surprised, flying sweatdrops, blush, flustered, restrained, closed mouth, looking at viewer, no bra, no panties, hanging, hanging legs, midair, clothes pull, hands up, tentacles under clothes, skirt lift, knees together feet apart, assisted exposure, tentacle grab, tentacles around legs, tentacles around body, tentacles around breast, grabbing another's breast, dynamic pose, motion_lines, (sound effects, heart), tentacle pit, dark, (black background:0.6), wet, slime (substance), ",
                         'prompt_neg': '',
                     },
                     {
@@ -8998,7 +8998,7 @@ PROMPT_CARD_DATA = {
                         'title': '触手轮奸',
                         'group_title': '强制触手姦',
                         'group_path': '强制触手姦',
-                        'prompt_pos': "interspecies, tentacles, tentacle sex, tentaclejob, forced, rape, gangbang, full body, 1girl, solo, aestus estus, blush, flustered, restrained, heavy breathing, looking at viewer, no bra, no panties, white thighhighs, tentacle in mouth, hanging, hanging legs, midair, clothes pull, hands up, handjob, double handjob, skirt lift, spread legs, feet, penis tentacle, vaginal, anal, lactation, forced lactation, assisted exposure, tentacle grab, tentacles around legs, tentacles around arms, tentacles around body, tentacles around breast, grabbing another's breast, wet, slime (substance), nervous sweating, body blush, full-body blush, flying sweatdrops, cum in pussy, cum on breasts, facial, cum in mouth, cum on hair, cum on belly, (cum on thighs:1.1), cum on thighhighs, (cum on legs:1.1), cum on feet, cum overflow, excessive cum, dynamic pose, motion_lines, (sound effects, heart), inset, female fertilization, tentacle pit, dark, (black background:0.6), dynamic_angle, dutch angle, (     inset, ",
+                        'prompt_pos': "interspecies, tentacles, tentacle sex, tentaclejob, forced, rape, gangbang, full body, 1girl, solo, aestus estus, blush, flustered, restrained, heavy breathing, looking at viewer, no bra, no panties, white thighhighs, tentacle in mouth, hanging, hanging legs, midair, clothes pull, hands up, handjob, double handjob, skirt lift, spread legs, feet, penis tentacle, vaginal, anal, lactation, forced lactation, assisted exposure, tentacle grab, tentacles around legs, tentacles around arms, tentacles around body, tentacles around breast, grabbing another's breast, wet, slime (substance), nervous sweating, body blush, full-body blush, flying sweatdrops, cum in pussy, cum on breasts, facial, cum in mouth, cum on hair, cum on belly, (cum on thighs:1.1), cum on thighhighs, (cum on legs:1.1), cum on feet, cum overflow, excessive cum, dynamic pose, motion_lines, (sound effects, heart), inset, female fertilization, tentacle pit, dark, (black background:0.6), dynamic_angle, dutch angle, inset, ",
                         'prompt_neg': '',
                     },
                     {
@@ -9006,7 +9006,7 @@ PROMPT_CARD_DATA = {
                         'title': '机械触手轮奸',
                         'group_title': '强制触手姦',
                         'group_path': '强制触手姦',
-                        'prompt_pos': "interspecies, (mechanical:1.2), tentacles, mechanical tentacles, mechanical sex, tentacle sex, tentaclejob, forced, rape, gangbang, full body, 1girl, solo, aestus estus, blush, flustered, restrained, heavy breathing, looking at viewer, no bra, no panties, white thighhighs, tentacle in mouth, hanging, hanging legs, midair, leaning back, clothes pull, hands up, handjob, double handjob, skirt lift, spread legs, m legs, feet, vaginal, anal, (lactation, forced lactation, milking machine:1.2), assisted exposure, tentacle grab, tentacles around legs, tentacles around arms, tentacles around body, tentacles around breast, grabbing another's breast, wet, slime (substance), suggestive fluid, mucus, nervous sweating, body blush, (full-body blush:1.2), flying sweatdrops, cum in pussy, cum on breasts, facial, cum in mouth, cum on hair, cum on belly, (cum on thighs:1.1), cum on thighhighs, (cum on legs:1.1), cum on feet, cum overflow, excessive cum, dynamic pose, motion_lines, (sound effects, heart), inset, female fertilization, laboratory, bio lab, dark, (black background:0.6), dynamic_angle, dutch angle, (     inset, ",
+                        'prompt_pos': "interspecies, (mechanical:1.2), tentacles, mechanical tentacles, mechanical sex, tentacle sex, tentaclejob, forced, rape, gangbang, full body, 1girl, solo, aestus estus, blush, flustered, restrained, heavy breathing, looking at viewer, no bra, no panties, white thighhighs, tentacle in mouth, hanging, hanging legs, midair, leaning back, clothes pull, hands up, handjob, double handjob, skirt lift, spread legs, m legs, feet, vaginal, anal, (lactation, forced lactation, milking machine:1.2), assisted exposure, tentacle grab, tentacles around legs, tentacles around arms, tentacles around body, tentacles around breast, grabbing another's breast, wet, slime (substance), suggestive fluid, mucus, nervous sweating, body blush, (full-body blush:1.2), flying sweatdrops, cum in pussy, cum on breasts, facial, cum in mouth, cum on hair, cum on belly, (cum on thighs:1.1), cum on thighhighs, (cum on legs:1.1), cum on feet, cum overflow, excessive cum, dynamic pose, motion_lines, (sound effects, heart), inset, female fertilization, laboratory, bio lab, dark, (black background:0.6), dynamic_angle, dutch angle, inset, ",
                         'prompt_neg': '',
                     },
                     {
@@ -9139,7 +9139,7 @@ PROMPT_CARD_DATA = {
                         'title': '女孩穿着旗袍因为淫纹被迫发情坐在窗前一脸妖媚看向镜头，同时揉捏自己的胸部并掀开旗袍裙摆露出汁水泛滥的被创可贴遮挡的阴户和淫纹暗示做爱',
                         'group_title': 'Pov',
                         'group_path': 'Pov',
-                        'prompt_pos': 'cowboy shot, 1girl, solo, in heat, shy, blush, full-face blush, drunk, half-closed eyes, looking at viewer, heavy breathing, o, saliva, alternate costume, revealing clothes, ((sideless outfit)), ((backless outfit)), bare shoulders, china dress, groin, pelvic curtain, hip vent, bottomless, leaning back, sitting in window, bowlegged pose, grabbing own breast, lifting own clothes, pelvic curtain lift, pelvic curtain aside, (pubic tattoo, glowing tattoo, bandaid on pussy, body blush, sweat, nervous sweating, pussy peek, suggestive fluid, pussy juice, pussy juice drip through clothes, excessive pussy juice, sexually suggestive, night, dark, indoors, chiaroscuro, shadow, window, moonlight, sidelighting, dynamic_angle, dutch angle, ',
+                        'prompt_pos': 'cowboy shot, 1girl, solo, in heat, shy, blush, full-face blush, drunk, half-closed eyes, looking at viewer, heavy breathing, o, saliva, alternate costume, revealing clothes, ((sideless outfit)), ((backless outfit)), bare shoulders, china dress, groin, pelvic curtain, hip vent, bottomless, leaning back, sitting in window, bowlegged pose, grabbing own breast, lifting own clothes, pelvic curtain lift, pelvic curtain aside, pubic tattoo, glowing tattoo, bandaid on pussy, body blush, sweat, nervous sweating, pussy peek, suggestive fluid, pussy juice, pussy juice drip through clothes, excessive pussy juice, sexually suggestive, night, dark, indoors, chiaroscuro, shadow, window, moonlight, sidelighting, dynamic_angle, dutch angle, ',
                         'prompt_neg': 'squeans, arm at side, (arm support), ',
                     },
                 ],
