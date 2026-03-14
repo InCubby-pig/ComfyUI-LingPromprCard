@@ -77,7 +77,7 @@ class LingPromptCardMergeBase:
         for row in lists:
             required_inputs[row["input_key"]] = (
                 row["item_options"],
-                {"default": "(不输出)"},
+                {"default": "(随机)"},
             )
 
         return {"required": required_inputs}
@@ -93,7 +93,7 @@ class LingPromptCardMergeBase:
         outputs: List[str] = []
         for idx, row in enumerate(lists):
             input_key = str(row["input_key"])
-            value = kwargs.get(input_key, "(不输出)")
+            value = kwargs.get(input_key, "(随机)")
             tags = row["tags"]
             if not tags:
                 continue
