@@ -9,6 +9,7 @@ const TARGET_NODE_NAMES = new Set([
 const PREVIEW_WIDGET_NAME = "tags预览";
 const PREVIEW_UI_KEY = "lingpromptcard_tags_preview";
 const PREVIEW_DEFAULT_TEXT = "正面: (等待执行)\n负面: (等待执行)";
+const PREVIEW_DIRTY_TEXT = "正面: (参数已修改，待执行)\n负面: (参数已修改，待执行)";
 
 function isTargetNodeName(name) {
     if (!name) {
@@ -41,16 +42,37 @@ function normalizePreviewText(value) {
 }
 
 function extractPreviewFromMessage(message) {
-    if (!message || typeof message !== "object") {
-        return { found: false, text: "" };
+    const queue = [message];
+    const visited = new Set();
+
+    for (let depth = 0; depth < 5 && queue.length > 0; depth += 1) {
+        const currentLevel = queue.splice(0, queue.length);
+        for (const payload of currentLevel) {
+            if (!payload || typeof payload !== "object") {
+                continue;
+            }
+            if (visited.has(payload)) {
+                continue;
+            }
+            visited.add(payload);
+
+            if (Object.prototype.hasOwnProperty.call(payload, PREVIEW_UI_KEY)) {
+                return { found: true, text: normalizePreviewText(payload[PREVIEW_UI_KEY]) };
+            }
+
+            const ui = payload.ui;
+            if (ui && typeof ui === "object" && Object.prototype.hasOwnProperty.call(ui, PREVIEW_UI_KEY)) {
+                return { found: true, text: normalizePreviewText(ui[PREVIEW_UI_KEY]) };
+            }
+
+            for (const value of Object.values(payload)) {
+                if (value && typeof value === "object") {
+                    queue.push(value);
+                }
+            }
+        }
     }
-    if (Object.prototype.hasOwnProperty.call(message, PREVIEW_UI_KEY)) {
-        return { found: true, text: normalizePreviewText(message[PREVIEW_UI_KEY]) };
-    }
-    const ui = message.ui;
-    if (ui && typeof ui === "object" && Object.prototype.hasOwnProperty.call(ui, PREVIEW_UI_KEY)) {
-        return { found: true, text: normalizePreviewText(ui[PREVIEW_UI_KEY]) };
-    }
+
     return { found: false, text: "" };
 }
 
@@ -62,7 +84,7 @@ function ensurePreviewWidget(node) {
     if (existing) {
         if (existing.inputEl) {
             existing.inputEl.readOnly = true;
-            existing.inputEl.disabled = true;
+            existing.inputEl.disabled = false;
         }
         return existing;
     }
@@ -79,10 +101,8 @@ function ensurePreviewWidget(node) {
     }
 
     widget.options = { ...(widget.options || {}), multiline: true, serialize: false };
-    widget.disabled = true;
     if (widget.inputEl) {
         widget.inputEl.readOnly = true;
-        widget.inputEl.disabled = true;
     }
     return widget;
 }
@@ -101,6 +121,10 @@ function updatePreviewWidget(node, text) {
         widget.inputEl.value = nextText;
     }
     node?.setDirtyCanvas?.(true, true);
+}
+
+function markPreviewDirty(node) {
+    updatePreviewWidget(node, PREVIEW_DIRTY_TEXT);
 }
 
 function getCategoryLabels(categoryWidget) {
@@ -162,6 +186,10 @@ app.registerExtension({
             const result = originalOnWidgetChanged
                 ? originalOnWidgetChanged.call(this, name, value, oldValue, widget)
                 : undefined;
+
+            if (name !== PREVIEW_WIDGET_NAME) {
+                markPreviewDirty(this);
+            }
 
             if (this.__lingPromptCardSyncing) {
                 return result;
