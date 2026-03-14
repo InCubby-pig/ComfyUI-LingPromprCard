@@ -5,6 +5,7 @@
 - 抓取页面数: `281`
 - 抓取失败数: `0`
 - 细分抽卡器数量: `66`
+- 合并抽卡器数量: `9`
 - 细分阈值: `source_page >= 150`
 
 ## 旧分区统计
@@ -20,6 +21,11 @@
 - `danbooru_metatags`: `1` 个
 - `danbooru_sex_r18`: `1` 个
 - `danbooru_visual`: `53` 个
+
+## 合并抽卡器统计
+
+- `danbooru_copyright_character`: `2` 个
+- `danbooru_visual`: `7` 个
 
 ## 细分抽卡器明细
 
@@ -89,6 +95,18 @@
 - `LingPromptCardDanbooruSelectorDanbooruVisualRealWorldLocations` | `danbooru_selector_danbooru_visual_real_world_locations` | Danbooru-视觉-Real World-Locations | Real world | tag_group:locations | 253
 - `LingPromptCardDanbooruSelectorDanbooruVisualRealWorldPeople` | `danbooru_selector_danbooru_visual_real_world_people` | Danbooru-视觉-Real World-People | Real world | tag_group:people | 1819
 - `LingPromptCardDanbooruSelectorDanbooruVisualRealWorldRealWorldLocations` | `danbooru_selector_danbooru_visual_real_world_real_world_locations` | Danbooru-视觉-Real World-Real World Locations | Real world | tag_group:real_world_locations | 465
+
+## 合并抽卡器明细
+
+- `LingPromptCardDanbooruMergeCopyrightCharacterGenresOfVideoGames` | `danbooru_merge_danbooru_copyright_character_genres_of_video_games` | Danbooru-合并-版权-Genres Of Video Games | Genres of video games | lists=3 | tags=1087
+- `LingPromptCardDanbooruMergeCopyrightCharacterMore` | `danbooru_merge_danbooru_copyright_character_more` | Danbooru-合并-版权-More | More | lists=6 | tags=4233
+- `LingPromptCardDanbooruMergeVisualAttireAndBodyAccessories` | `danbooru_merge_danbooru_visual_attire_and_body_accessories` | Danbooru-合并-视觉-Attire And Body Accessories | Attire and body accessories | lists=4 | tags=2062
+- `LingPromptCardDanbooruMergeVisualBody` | `danbooru_merge_danbooru_visual_body` | Danbooru-合并-视觉-Body | Body | lists=25 | tags=2249
+- `LingPromptCardDanbooruMergeVisualCreatures` | `danbooru_merge_danbooru_visual_creatures` | Danbooru-合并-视觉-Creatures | Creatures | lists=5 | tags=1085
+- `LingPromptCardDanbooruMergeVisualImageCompositionAndStyle` | `danbooru_merge_danbooru_visual_image_composition_and_style` | Danbooru-合并-视觉-Image Composition And Style | Image composition and style | lists=4 | tags=1903
+- `LingPromptCardDanbooruMergeVisualMore` | `danbooru_merge_danbooru_visual_more` | Danbooru-合并-视觉-More | More | lists=3 | tags=2059
+- `LingPromptCardDanbooruMergeVisualObjects` | `danbooru_merge_danbooru_visual_objects` | Danbooru-合并-视觉-Objects | Objects | lists=6 | tags=3298
+- `LingPromptCardDanbooruMergeVisualRealWorld` | `danbooru_merge_danbooru_visual_real_world` | Danbooru-合并-视觉-Real World | Real world | lists=4 | tags=2906
 
 ## 复核项
 

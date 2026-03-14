@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import hashlib
-import importlib
 import json
 import re
 import shutil
@@ -106,6 +105,17 @@ class SelectorSpec:
     bucket: str
     category: str
     source: str
+    item_count: int
+
+
+@dataclass
+class MergeSpec:
+    node_key: str
+    class_name: str
+    display_name: str
+    bucket: str
+    category: str
+    data: Dict[str, object]
     item_count: int
 
 
@@ -513,6 +523,16 @@ def make_class_name(node_key: str) -> str:
     return "LingPromptCard" + "".join(t.capitalize() for t in tokens)
 
 
+def make_merge_class_name(node_key: str) -> str:
+    base = node_key
+    if base.startswith("danbooru_merge_"):
+        base = base[len("danbooru_merge_") :]
+    if base.startswith("danbooru_"):
+        base = base[len("danbooru_") :]
+    tokens = [t for t in base.split("_") if t]
+    return "LingPromptCardDanbooruMerge" + "".join(t.capitalize() for t in tokens)
+
+
 def make_display_name(bucket: str, category: str, source: str) -> str:
     prefix = NODE_META[bucket]["display_prefix"]
     cat_title = titleize(category)
@@ -520,6 +540,11 @@ def make_display_name(bucket: str, category: str, source: str) -> str:
         return f"{prefix}-{cat_title}-总池"
     src_title = titleize(source)
     return f"{prefix}-{cat_title}-{src_title}"
+
+
+def make_merge_display_name(bucket: str, category: str) -> str:
+    bucket_name = NODE_META[bucket]["display_prefix"].replace("Danbooru-", "")
+    return f"Danbooru-合并-{bucket_name}-{titleize(category)}"
 
 
 def split_category_selectors(
@@ -651,6 +676,76 @@ def build_selector_specs(datasets: Dict[str, OrderedDict]) -> List[SelectorSpec]
     return specs
 
 
+def build_merge_specs(selector_specs: List[SelectorSpec]) -> List[MergeSpec]:
+    grouped: Dict[Tuple[str, str], List[SelectorSpec]] = {}
+    for spec in selector_specs:
+        grouped.setdefault((spec.bucket, spec.category), []).append(spec)
+
+    merge_specs: List[MergeSpec] = []
+    used_node_keys: Set[str] = set()
+    used_class_names: Set[str] = set()
+
+    for (bucket, category), specs in sorted(grouped.items(), key=lambda x: (x[0][0], x[0][1].lower())):
+        # 仅对可合并家族生成合并抽卡器。
+        if len(specs) <= 1:
+            continue
+
+        specs.sort(key=lambda s: s.source.lower())
+
+        base_node_key = re.sub(
+            r"_+",
+            "_",
+            f"danbooru_merge_{slugify(bucket)}_{slugify(category)}",
+        ).strip("_")
+        node_key = base_node_key
+        class_name = make_merge_class_name(node_key)
+        idx = 2
+        while node_key in used_node_keys or class_name in used_class_names:
+            node_key = f"{base_node_key}_{idx}"
+            class_name = make_merge_class_name(node_key)
+            idx += 1
+
+        used_node_keys.add(node_key)
+        used_class_names.add(class_name)
+
+        lists: List[Dict[str, object]] = []
+        total_items = 0
+        for sel in specs:
+            source_title = titleize(sel.source)
+            list_label = f"{titleize(category)}/{source_title}"
+            tags = [str(item.get("title", "")).strip() for item in sel.data["categories"][0]["items"]]
+            tags = [tag for tag in tags if tag]
+            total_items += len(tags)
+            lists.append(
+                {
+                    "label": list_label,
+                    "input_key": list_label,
+                    "source": sel.source,
+                    "tags": tags,
+                }
+            )
+
+        merge_data = {
+            "title": make_merge_display_name(bucket, category),
+            "sections": list(NODE_META[bucket]["sections"]),
+            "lists": lists,
+        }
+
+        merge_specs.append(
+            MergeSpec(
+                node_key=node_key,
+                class_name=class_name,
+                display_name=make_merge_display_name(bucket, category),
+                bucket=bucket,
+                category=category,
+                data=merge_data,
+                item_count=total_items,
+            )
+        )
+
+    return merge_specs
+
+
 def ensure_clean_data_dir(data_root: Path) -> None:
     data_pkg_dir = data_root / "danbooru"
     if data_pkg_dir.exists():
@@ -717,6 +812,31 @@ def dump_index_py(index_path: Path, specs: List[SelectorSpec]) -> None:
     index_path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def dump_merge_index_py(index_path: Path, specs: List[MergeSpec]) -> None:
+    lines: List[str] = []
+    lines.append("# -*- coding: utf-8 -*-")
+    lines.append('"""自动生成文件：聚合 Danbooru 合并抽卡器数据。"""')
+    lines.append("")
+    lines.append("DANBOORU_MERGE_SELECTOR_SPECS = [")
+    for spec in specs:
+        lines.append(
+            "    {"
+            f"'node_key': {spec.node_key!r}, "
+            f"'class_name': {spec.class_name!r}, "
+            f"'display_name': {spec.display_name!r}"
+            "},"
+        )
+    lines.append("]")
+    lines.append("")
+    lines.append("DANBOORU_MERGE_SELECTOR_DATA = {")
+    for spec in specs:
+        lines.append(f"    {spec.node_key!r}: {repr(spec.data)},")
+    lines.append("}")
+    lines.append("")
+
+    index_path.write_text("\n".join(lines), encoding="utf-8")
+
+
 def write_review_report(
     report_path: Path,
     root_updated_at: str,
@@ -727,6 +847,7 @@ def write_review_report(
     bucket_conflict_pages: List[str],
     no_context_pages: List[str],
     specs: List[SelectorSpec],
+    merge_specs: List[MergeSpec],
 ) -> None:
     lines: List[str] = []
     lines.append("# Danbooru Tag Groups 抓取审查报告")
@@ -736,6 +857,7 @@ def write_review_report(
     lines.append(f"- 抓取页面数: `{len(pages)}`")
     lines.append(f"- 抓取失败数: `{len(failed_pages)}`")
     lines.append(f"- 细分抽卡器数量: `{len(specs)}`")
+    lines.append(f"- 合并抽卡器数量: `{len(merge_specs)}`")
     lines.append(f"- 细分阈值: `source_page >= {SELECTOR_SPLIT_THRESHOLD}`")
     lines.append("")
 
@@ -756,12 +878,28 @@ def write_review_report(
         lines.append(f"- `{bucket}`: `{count}` 个")
     lines.append("")
 
+    lines.append("## 合并抽卡器统计")
+    lines.append("")
+    merge_bucket_counter = Counter(spec.bucket for spec in merge_specs)
+    for bucket, count in merge_bucket_counter.items():
+        lines.append(f"- `{bucket}`: `{count}` 个")
+    lines.append("")
+
     lines.append("## 细分抽卡器明细")
     lines.append("")
     for spec in specs:
         lines.append(
             f"- `{spec.class_name}` | `{spec.node_key}` | {spec.display_name} | "
             f"{spec.category} | {spec.source} | {spec.item_count}"
+        )
+
+    lines.append("")
+    lines.append("## 合并抽卡器明细")
+    lines.append("")
+    for spec in merge_specs:
+        lines.append(
+            f"- `{spec.class_name}` | `{spec.node_key}` | {spec.display_name} | "
+            f"{spec.category} | lists={len(spec.data['lists'])} | tags={spec.item_count}"
         )
 
     lines.append("")
@@ -866,12 +1004,14 @@ def print_stats(
     failed_pages: List[str],
     datasets: Dict[str, OrderedDict],
     specs: List[SelectorSpec],
+    merge_specs: List[MergeSpec],
 ) -> None:
     print("抓取完成。")
     print(f"- root_updated_at: {root_updated_at}")
     print(f"- pages: {len(pages)}")
     print(f"- failed_pages: {len(failed_pages)}")
     print(f"- selectors: {len(specs)}")
+    print(f"- merge_selectors: {len(merge_specs)}")
 
     for key, node in datasets.items():
         categories = node["categories"]
@@ -883,6 +1023,7 @@ def main() -> None:
     repo_root = Path(__file__).resolve().parent.parent
     data_root = repo_root / "promptcard" / "data"
     index_path = data_root / "danbooru_index.py"
+    merge_index_path = data_root / "danbooru_merge_index.py"
     report_path = repo_root / "tools" / "danbooru_tag_groups_review.md"
 
     root_page = fetch_wiki_page(ROOT_TITLE)
@@ -900,9 +1041,11 @@ def main() -> None:
     )
 
     specs = build_selector_specs(datasets)
+    merge_specs = build_merge_specs(specs)
     ensure_clean_data_dir(data_root)
     dump_selector_modules(data_root, specs)
     dump_index_py(index_path, specs)
+    dump_merge_index_py(merge_index_path, merge_specs)
     write_review_report(
         report_path=report_path,
         root_updated_at=root_updated_at,
@@ -913,6 +1056,7 @@ def main() -> None:
         bucket_conflict_pages=bucket_conflict_pages,
         no_context_pages=no_context_pages,
         specs=specs,
+        merge_specs=merge_specs,
     )
 
     print_stats(
@@ -921,9 +1065,11 @@ def main() -> None:
         failed_pages=failed_pages,
         datasets=datasets,
         specs=specs,
+        merge_specs=merge_specs,
     )
     print(f"- data_dir: {data_root / 'danbooru'}")
     print(f"- index_file: {index_path}")
+    print(f"- merge_index_file: {merge_index_path}")
     print(f"- review_report: {report_path}")
 
 

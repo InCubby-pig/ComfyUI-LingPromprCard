@@ -1,5 +1,5 @@
-from .PromptCardCommon import LingPromptCardBase
-from .data.danbooru_index import DANBOORU_SELECTOR_DATA, DANBOORU_SELECTOR_SPECS
+from ...basic.PromptCardCommon import LingPromptCardBase
+from ....data.danbooru_index import DANBOORU_SELECTOR_DATA, DANBOORU_SELECTOR_SPECS
 
 
 NODE_CLASS_MAPPINGS = {}

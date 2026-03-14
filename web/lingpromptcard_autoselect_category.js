@@ -14,7 +14,10 @@ function isTargetNodeName(name) {
     if (TARGET_NODE_NAMES.has(name)) {
         return true;
     }
-    return name.startsWith("LingPromptCardDanbooruSelector");
+    return (
+        name.startsWith("LingPromptCardDanbooruSelector")
+        || name.startsWith("LingPromptCardDanbooruMerge")
+    );
 }
 
 function getWidgetByName(node, name) {

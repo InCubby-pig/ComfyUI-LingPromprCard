@@ -1,7 +1,7 @@
 import random
 from typing import Dict, List, Tuple
 
-from .PromptCardData import PROMPT_CARD_DATA
+from ...PromptCardData import PROMPT_CARD_DATA
 
 
 class LingPromptCardBase:
