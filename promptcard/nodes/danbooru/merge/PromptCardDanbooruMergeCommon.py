@@ -23,12 +23,17 @@ class LingPromptCardMergeBase:
         zh_lexicon = load_zh_cn_lexicon()
 
         lists: List[Dict[str, object]] = []
+        used_input_keys = set()
         for idx, row in enumerate(raw_lists, start=1):
             label = str(row.get("label", f"列表{idx}")).strip() or f"列表{idx}"
-            input_key = str(row.get("input_key", label)).strip() or label
+            raw_input_key = str(row.get("input_key", label)).strip() or label
             display_label = str(row.get("display_label", "")).strip()
             if not display_label:
                 display_label = format_label_display(label, zh_lexicon)
+            input_key = display_label or raw_input_key
+            if input_key in used_input_keys:
+                input_key = f"{input_key} [{raw_input_key}]"
+            used_input_keys.add(input_key)
             raw_tags = row.get("tags", [])
             display_tags_map = row.get("display_tags", {})
 
@@ -56,6 +61,7 @@ class LingPromptCardMergeBase:
                     "label": label,
                     "display_label": display_label,
                     "input_key": input_key,
+                    "raw_input_key": raw_input_key,
                     "tags": dedupe_tags,
                     "item_options": item_options,
                     "display_to_tag": display_to_tag,
@@ -112,7 +118,8 @@ class LingPromptCardMergeBase:
         outputs: List[str] = []
         for idx, row in enumerate(lists):
             input_key = str(row["input_key"])
-            value = kwargs.get(input_key, "(随机)")
+            raw_input_key = str(row.get("raw_input_key", input_key))
+            value = kwargs.get(input_key, kwargs.get(raw_input_key, "(随机)"))
             tags = row["tags"]
             if not tags:
                 continue
