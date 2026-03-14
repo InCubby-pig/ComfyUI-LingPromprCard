@@ -24,3 +24,5 @@ env/
 /.codex
 
 AGENTS.md
+
+.envrc
