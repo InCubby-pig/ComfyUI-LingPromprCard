@@ -194,8 +194,8 @@ function getMergeRowWidgets(node) {
 
 function getPickerRowResetValue(rowWidget) {
     const values = getWidgetOptions(rowWidget);
-    if (values.includes("(不输出)")) {
-        return "(不输出)";
+    if (values.includes("(随机)")) {
+        return "(随机)";
     }
     if (values.length > 0) {
         return values[0];
@@ -258,23 +258,39 @@ function togglePickerTagSelection(node, widgetName, value) {
         return false;
     }
     const options = getWidgetOptions(rowWidget);
-    if (!options.includes("(不输出)") || !options.includes("(随机)")) {
+    if (!options.includes("(随机)")) {
         return false;
     }
-    if (value === "(不输出)" || value === "(随机)") {
+    const candidates = options
+        .filter((option) => option !== "(随机)" && option !== "(不输出)")
+        .map((option) => normalizeTagDisplay(option))
+        .filter((tag) => !!tag);
+    if (candidates.length === 0) {
         return false;
     }
 
-    const selectedTag = normalizeTagDisplay(value);
+    let selectedTag = "";
+    let shouldToggle = true;
+    if (value === "(随机)") {
+        const randomIdx = Math.floor(Math.random() * candidates.length);
+        selectedTag = candidates[randomIdx] || "";
+        shouldToggle = false;
+    } else if (value !== "(不输出)") {
+        selectedTag = normalizeTagDisplay(value);
+    }
     if (!selectedTag) {
         return false;
     }
 
     const tags = getPickerSelectedTags(node);
-    const existingIdx = tags.indexOf(selectedTag);
-    if (existingIdx >= 0) {
-        tags.splice(existingIdx, 1);
-    } else {
+    if (shouldToggle) {
+        const existingIdx = tags.indexOf(selectedTag);
+        if (existingIdx >= 0) {
+            tags.splice(existingIdx, 1);
+        } else {
+            tags.push(selectedTag);
+        }
+    } else if (!tags.includes(selectedTag)) {
         tags.push(selectedTag);
     }
 

@@ -1,3 +1,4 @@
+import random
 from typing import Dict, List
 
 from .PromptCardDanbooruMergeCommon import LingPromptCardMergeBase
@@ -33,11 +34,18 @@ class LingPromptCardMergePickerBase(LingPromptCardMergeBase):
         }
 
         for row in lists:
-            item_options = row["item_options"]
-            default_value = "(不输出)" if "(不输出)" in item_options else item_options[0]
+            raw_options = row["item_options"]
+            item_options: List[str] = []
+            for option in raw_options:
+                if option == "(不输出)":
+                    continue
+                if option not in item_options:
+                    item_options.append(option)
+            if "(随机)" not in item_options:
+                item_options.insert(0, "(随机)")
             required_inputs[row["input_key"]] = (
                 item_options,
-                {"default": default_value},
+                {"default": "(随机)"},
             )
 
         return {"required": required_inputs}
@@ -64,8 +72,17 @@ class LingPromptCardMergePickerBase(LingPromptCardMergeBase):
         for row in lists:
             input_key = str(row["input_key"])
             raw_input_key = str(row.get("raw_input_key", input_key))
-            value = kwargs.get(input_key, kwargs.get(raw_input_key, "(不输出)"))
-            if value in ("(不输出)", "(随机)"):
+            value = kwargs.get(input_key, kwargs.get(raw_input_key, "(随机)"))
+            if value == "(不输出)":
+                continue
+
+            if value == "(随机)":
+                candidates = row.get("tags", [])
+                if candidates:
+                    chosen = random.choice(candidates)
+                    if chosen not in seen:
+                        seen.add(chosen)
+                        tags.append(chosen)
                 continue
 
             mapped = row["display_to_tag"].get(value)
