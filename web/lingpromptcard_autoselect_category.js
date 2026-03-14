@@ -9,6 +9,8 @@ const TARGET_NODE_NAMES = new Set([
 const LEGACY_PREVIEW_WIDGET_NAME = "tags预览";
 const PREVIEW_POS_WIDGET_NAME = "正面tags预览";
 const PREVIEW_NEG_WIDGET_NAME = "负面tags预览";
+const PICKER_SELECTED_TAGS_WIDGET_NAME = "已选tags";
+const PICKER_RESET_WIDGET_NAME = "重置已选tags";
 const PREVIEW_UI_KEY = "lingpromptcard_tags_preview";
 const PREVIEW_WIDGET_HEIGHT = 150;
 const PREVIEW_NODE_MIN_HEIGHT = 560;
@@ -94,6 +96,200 @@ function normalizeTagDisplay(value) {
         text = text.slice(pipeIndex + 3).trim();
     }
     return normalizeOutputTagText(text);
+}
+
+function isMergePickerNode(node) {
+    return !!getWidgetByName(node, PICKER_SELECTED_TAGS_WIDGET_NAME);
+}
+
+function parseSelectedTags(value) {
+    const text = normalizeOutputTagText(value);
+    if (!text) {
+        return [];
+    }
+    const tags = [];
+    const seen = new Set();
+    for (const raw of text.split(",")) {
+        const tag = normalizeOutputTagText(raw);
+        if (!tag || seen.has(tag)) {
+            continue;
+        }
+        seen.add(tag);
+        tags.push(tag);
+    }
+    return tags;
+}
+
+function stringifySelectedTags(tags) {
+    if (!Array.isArray(tags) || tags.length === 0) {
+        return "";
+    }
+    const normalized = [];
+    const seen = new Set();
+    for (const raw of tags) {
+        const tag = normalizeOutputTagText(raw);
+        if (!tag || seen.has(tag)) {
+            continue;
+        }
+        seen.add(tag);
+        normalized.push(tag);
+    }
+    return normalized.join(", ");
+}
+
+function setWidgetStringValue(widget, value) {
+    if (!widget) {
+        return;
+    }
+    const nextText = typeof value === "string" ? value : "";
+    if (widget.value !== nextText) {
+        widget.value = nextText;
+    }
+    if (widget.__lingPreviewTextArea && widget.__lingPreviewTextArea.value !== nextText) {
+        widget.__lingPreviewTextArea.value = nextText;
+    }
+    if (widget.inputEl && widget.inputEl.value !== nextText) {
+        widget.inputEl.value = nextText;
+    }
+}
+
+function ensurePickerSelectedTagsWidget(node) {
+    const widget = getWidgetByName(node, PICKER_SELECTED_TAGS_WIDGET_NAME);
+    if (!widget) {
+        return null;
+    }
+    if (!widget.__lingPickerHidden) {
+        widget.__lingPickerHidden = true;
+        widget.computeSize = () => [0, -4];
+        if (widget.inputEl) {
+            widget.inputEl.style.display = "none";
+        }
+        if (widget.__lingPreviewTextArea) {
+            widget.__lingPreviewTextArea.style.display = "none";
+        }
+    }
+    return widget;
+}
+
+function getPickerSelectedTags(node) {
+    const widget = ensurePickerSelectedTagsWidget(node);
+    return parseSelectedTags(getWidgetStringValue(widget));
+}
+
+function setPickerSelectedTags(node, tags) {
+    const widget = ensurePickerSelectedTagsWidget(node);
+    if (!widget) {
+        return;
+    }
+    setWidgetStringValue(widget, stringifySelectedTags(tags));
+}
+
+function getMergeRowWidgets(node) {
+    const widgets = Array.isArray(node?.widgets) ? node.widgets : [];
+    return widgets.filter((w) => {
+        const values = getWidgetOptions(w);
+        return values.includes("(不输出)") && values.includes("(随机)");
+    });
+}
+
+function getPickerRowResetValue(rowWidget) {
+    const values = getWidgetOptions(rowWidget);
+    if (values.includes("(不输出)")) {
+        return "(不输出)";
+    }
+    if (values.length > 0) {
+        return values[0];
+    }
+    return "";
+}
+
+function clearPickerSelectedTags(node) {
+    if (!isMergePickerNode(node)) {
+        return;
+    }
+    node.__lingPromptCardSyncing = true;
+    try {
+        setPickerSelectedTags(node, []);
+        node?.setDirtyCanvas?.(true, true);
+    } finally {
+        node.__lingPromptCardSyncing = false;
+    }
+    updatePreviewWidgets(node, { pos: "", neg: "" });
+}
+
+function ensurePickerResetButton(node) {
+    if (!isMergePickerNode(node)) {
+        return null;
+    }
+    const existing = getWidgetByName(node, PICKER_RESET_WIDGET_NAME);
+    if (existing) {
+        return existing;
+    }
+    if (typeof node.addWidget !== "function") {
+        return null;
+    }
+    const button = node.addWidget("button", PICKER_RESET_WIDGET_NAME, null, () => {
+        clearPickerSelectedTags(node);
+    });
+    if (button) {
+        button.options = { ...(button.options || {}), serialize: false };
+    }
+    return button;
+}
+
+function ensurePickerUi(node) {
+    if (!isMergePickerNode(node)) {
+        return;
+    }
+    ensurePickerSelectedTagsWidget(node);
+    ensurePickerResetButton(node);
+}
+
+function togglePickerTagSelection(node, widgetName, value) {
+    if (!isMergePickerNode(node) || !widgetName) {
+        return false;
+    }
+    if (widgetName === PICKER_SELECTED_TAGS_WIDGET_NAME || widgetName === PICKER_RESET_WIDGET_NAME) {
+        return false;
+    }
+
+    const rowWidget = getWidgetByName(node, widgetName);
+    if (!rowWidget) {
+        return false;
+    }
+    const options = getWidgetOptions(rowWidget);
+    if (!options.includes("(不输出)") || !options.includes("(随机)")) {
+        return false;
+    }
+    if (value === "(不输出)" || value === "(随机)") {
+        return false;
+    }
+
+    const selectedTag = normalizeTagDisplay(value);
+    if (!selectedTag) {
+        return false;
+    }
+
+    const tags = getPickerSelectedTags(node);
+    const existingIdx = tags.indexOf(selectedTag);
+    if (existingIdx >= 0) {
+        tags.splice(existingIdx, 1);
+    } else {
+        tags.push(selectedTag);
+    }
+
+    const resetValue = getPickerRowResetValue(rowWidget);
+    node.__lingPromptCardSyncing = true;
+    try {
+        setPickerSelectedTags(node, tags);
+        if (resetValue && rowWidget.value !== resetValue) {
+            rowWidget.value = resetValue;
+        }
+        node?.setDirtyCanvas?.(true, true);
+    } finally {
+        node.__lingPromptCardSyncing = false;
+    }
+    return true;
 }
 
 function applyPreviewElementStyle(el, height) {
@@ -229,15 +425,7 @@ function updateSinglePreviewWidget(widget, value) {
         return;
     }
     const nextText = normalizeOutputTagText(value);
-    if (widget.value !== nextText) {
-        widget.value = nextText;
-    }
-    if (widget.__lingPreviewTextArea && widget.__lingPreviewTextArea.value !== nextText) {
-        widget.__lingPreviewTextArea.value = nextText;
-    }
-    if (widget.inputEl && widget.inputEl.value !== nextText) {
-        widget.inputEl.value = nextText;
-    }
+    setWidgetStringValue(widget, nextText);
 }
 
 function updatePreviewWidgets(node, preview) {
@@ -383,6 +571,14 @@ function buildRealtimePreview(node) {
         return { pos: "", neg: "" };
     }
 
+    if (isMergePickerNode(node)) {
+        const tags = getPickerSelectedTags(node);
+        return {
+            pos: stringifySelectedTags(tags),
+            neg: "",
+        };
+    }
+
     const seedWidget = getWidgetByName(node, "seed");
     const seed = Number(seedWidget?.value ?? 0);
     const modeWidget = getWidgetByName(node, "模式选择");
@@ -437,11 +633,7 @@ function buildRealtimePreview(node) {
             }
         }
     } else {
-        const widgets = Array.isArray(node?.widgets) ? node.widgets : [];
-        const mergeRows = widgets.filter((w) => {
-            const values = getWidgetOptions(w);
-            return values.includes("(不输出)") && values.includes("(随机)");
-        });
+        const mergeRows = getMergeRowWidgets(node);
 
         const outputs = [];
         for (let i = 0; i < mergeRows.length; i += 1) {
@@ -511,6 +703,7 @@ app.registerExtension({
         const originalOnConfigure = nodeType.prototype.onConfigure;
         nodeType.prototype.onConfigure = function (...args) {
             const result = originalOnConfigure ? originalOnConfigure.apply(this, args) : undefined;
+            ensurePickerUi(this);
             ensurePreviewWidgets(this);
             syncCategoryBySelectedItem(this);
             updatePreviewWidgets(this, buildRealtimePreview(this));
@@ -520,6 +713,7 @@ app.registerExtension({
         const originalOnNodeCreated = nodeType.prototype.onNodeCreated;
         nodeType.prototype.onNodeCreated = function (...args) {
             const result = originalOnNodeCreated ? originalOnNodeCreated.apply(this, args) : undefined;
+            ensurePickerUi(this);
             ensurePreviewWidgets(this);
             updatePreviewWidgets(this, buildRealtimePreview(this));
             return result;
@@ -534,6 +728,26 @@ app.registerExtension({
             if (this.__lingPromptCardSyncing) {
                 refreshRealtimePreview(this, name);
                 return result;
+            }
+
+            ensurePickerUi(this);
+            if (isMergePickerNode(this)) {
+                if (name === PICKER_SELECTED_TAGS_WIDGET_NAME) {
+                    this.__lingPromptCardSyncing = true;
+                    try {
+                        setPickerSelectedTags(this, parseSelectedTags(value));
+                        this.setDirtyCanvas?.(true, true);
+                    } finally {
+                        this.__lingPromptCardSyncing = false;
+                    }
+                    refreshRealtimePreview(this, name);
+                    return result;
+                }
+
+                if (togglePickerTagSelection(this, name, value)) {
+                    refreshRealtimePreview(this, name);
+                    return result;
+                }
             }
 
             const categoryWidget = getWidgetByName(this, "分类");
