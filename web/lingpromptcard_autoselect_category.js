@@ -2,14 +2,20 @@ import { app } from "../../scripts/app.js";
 
 const TARGET_NODE_NAMES = new Set([
     "LingPromptCardCostume",
-    "LingPromptCardDanbooruCopyrightCharacter",
-    "LingPromptCardDanbooruMetatags",
-    "LingPromptCardDanbooruSexR18",
-    "LingPromptCardDanbooruVisual",
     "LingPromptCardFraming",
     "LingPromptCardR18Scene",
     "LingPromptCardScene",
 ]);
+
+function isTargetNodeName(name) {
+    if (!name) {
+        return false;
+    }
+    if (TARGET_NODE_NAMES.has(name)) {
+        return true;
+    }
+    return name.startsWith("LingPromptCardDanbooruSelector");
+}
 
 function getWidgetByName(node, name) {
     if (!node?.widgets) {
@@ -49,7 +55,7 @@ function syncCategoryBySelectedItem(node) {
 app.registerExtension({
     name: "LingPromptCard.AutoSelectCategory",
     beforeRegisterNodeDef(nodeType, nodeData) {
-        if (!TARGET_NODE_NAMES.has(nodeData?.name)) {
+        if (!isTargetNodeName(nodeData?.name)) {
             return;
         }
         if (nodeType.prototype.__lingPromptCardAutoSelectPatched) {

@@ -12,10 +12,7 @@
 - 灵感抽卡-构图
 - 灵感抽卡-R18情景
 - 灵感抽卡-场景
-- Danbooru标签-视觉
-- Danbooru标签-Sex/R18
-- Danbooru标签-版权与角色
-- Danbooru标签-Metatags
+- Danbooru标签-细分抽卡器（自动生成，多节点）
 
 ## 安装方式
 1. 将本仓库放入：`<ComfyUI>/custom_nodes/ComfyUI-LingPromptCard/`
@@ -24,7 +21,7 @@
 
 ## 开发校验
 ```bash
-python3 -m py_compile __init__.py promptcard/*.py
+python3 -m py_compile __init__.py promptcard/*.py promptcard/data/*.py promptcard/data/danbooru/*.py
 ```
 
 ## Danbooru 数据更新
@@ -32,5 +29,6 @@ python3 -m py_compile __init__.py promptcard/*.py
 python3 tools/extract_danbooru_tag_groups.py
 ```
 执行后会更新：
-- `promptcard/PromptCardDanbooruData.py`
+- `promptcard/data/danbooru/*.py`
+- `promptcard/data/danbooru_index.py`
 - `tools/danbooru_tag_groups_review.md`

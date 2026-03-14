@@ -1,0 +1,11 @@
+# -*- coding: utf-8 -*-
+"""自动生成文件：由 tools/extract_danbooru_tag_groups.py 生成，请勿手改。"""
+
+SELECTOR_NODE_KEY = 'danbooru_selector_danbooru_visual_body_tag_groups'
+SELECTOR_CLASS_NAME = 'LingPromptCardDanbooruSelectorDanbooruVisualBodyTagGroups'
+SELECTOR_DISPLAY_NAME = 'Danbooru-视觉-Body-Tag Groups'
+SELECTOR_BUCKET = 'danbooru_visual'
+SELECTOR_CATEGORY = 'Body'
+SELECTOR_SOURCE = 'tag_groups'
+
+SELECTOR_DATA = {'title': 'Danbooru-视觉-Body-Tag Groups', 'sections': ['Visual characteristics'], 'categories': [{'label': 'Body / Tag Groups', 'items': [{'id': 'danbooru_selector_danbooru_visual_body_tag_groups_d672fb45eebb', 'title': 'computer', 'group_title': 'Objects', 'group_path': 'Visual characteristics / Body / tag_groups / Visual characteristics / Objects', 'source_page': 'tag_groups', 'prompt_pos': 'computer, ', 'prompt_neg': ''}, {'id': 'danbooru_selector_danbooru_visual_body_tag_groups_f7cd7b310227', 'title': 'injury', 'group_title': 'Body', 'group_path': 'Visual characteristics / Body / tag_groups / Visual characteristics / Body', 'source_page': 'tag_groups', 'prompt_pos': 'injury, ', 'prompt_neg': ''}, {'id': 'danbooru_selector_danbooru_visual_body_tag_groups_95a78e94e18b', 'title': 'mask', 'group_title': 'Attire and body accessories', 'group_path': 'Visual characteristics / Body / tag_groups / Visual characteristics / Attire and body accessories', 'source_page': 'tag_groups', 'prompt_pos': 'mask, ', 'prompt_neg': ''}, {'id': 'danbooru_selector_danbooru_visual_body_tag_groups_b9307a6f1f3f', 'title': 'on', 'group_title': 'Body', 'group_path': 'Visual characteristics / Body / tag_groups / Visual characteristics / Body', 'source_page': 'tag_groups', 'prompt_pos': 'on, ', 'prompt_neg': ''}, {'id': 'danbooru_selector_danbooru_visual_body_tag_groups_c06a29da950f', 'title': 'plant', 'group_title': 'Plants', 'group_path': 'Visual characteristics / Body / tag_groups / Visual characteristics / Plants', 'source_page': 'tag_groups', 'prompt_pos': 'plant, ', 'prompt_neg': ''}, {'id': 'danbooru_selector_danbooru_visual_body_tag_groups_9a6cc6d99045', 'title': 'tree', 'group_title': 'Plants', 'group_path': 'Visual characteristics / Body / tag_groups / Visual characteristics / Plants', 'source_page': 'tag_groups', 'prompt_pos': 'tree, ', 'prompt_neg': ''}]}]}

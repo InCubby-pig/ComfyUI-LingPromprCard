@@ -19,7 +19,9 @@ env/
 # OS
 .DS_Store
 
-/tools/
+/tools/*
+!/tools/extract_danbooru_tag_groups.py
+!/tools/danbooru_tag_groups_review.md
 
 /.codex
 
