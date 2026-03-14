@@ -1,4 +1,3 @@
-import random
 from typing import Dict, List
 
 from .PromptCardDanbooruMergeCommon import LingPromptCardMergeBase
@@ -73,16 +72,7 @@ class LingPromptCardMergePickerBase(LingPromptCardMergeBase):
             input_key = str(row["input_key"])
             raw_input_key = str(row.get("raw_input_key", input_key))
             value = kwargs.get(input_key, kwargs.get(raw_input_key, "(随机)"))
-            if value == "(不输出)":
-                continue
-
-            if value == "(随机)":
-                candidates = row.get("tags", [])
-                if candidates:
-                    chosen = random.choice(candidates)
-                    if chosen not in seen:
-                        seen.add(chosen)
-                        tags.append(chosen)
+            if value in ("(不输出)", "(随机)"):
                 continue
 
             mapped = row["display_to_tag"].get(value)
