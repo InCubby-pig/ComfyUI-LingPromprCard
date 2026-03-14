@@ -14,12 +14,13 @@ class LingPromptCardBase:
     RETURN_NAMES = ("正面提示词", "负面提示词")
     MODE_OPTIONS = ("🔒 手动指定", "🎲 部分随机(手动优先)", "🔓 完全随机")
     MODE_DEFAULT = "🔒 手动指定"
+    DATA_SOURCE = PROMPT_CARD_DATA
 
     _CACHED_CONFIG: Dict[str, object] = {}
 
     @classmethod
     def _build_config(cls) -> Dict[str, object]:
-        node_data = PROMPT_CARD_DATA.get(cls.NODE_KEY, {})
+        node_data = cls.DATA_SOURCE.get(cls.NODE_KEY, {})
         raw_categories = node_data.get("categories", [])
 
         categories = []

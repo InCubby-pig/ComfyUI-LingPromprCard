@@ -2,6 +2,10 @@ import { app } from "../../scripts/app.js";
 
 const TARGET_NODE_NAMES = new Set([
     "LingPromptCardCostume",
+    "LingPromptCardDanbooruCopyrightCharacter",
+    "LingPromptCardDanbooruMetatags",
+    "LingPromptCardDanbooruSexR18",
+    "LingPromptCardDanbooruVisual",
     "LingPromptCardFraming",
     "LingPromptCardR18Scene",
     "LingPromptCardScene",
