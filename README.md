@@ -39,3 +39,18 @@ python3 tools/extract_danbooru_tag_groups.py
 - `promptcard/data/danbooru_index.py`
 - `promptcard/data/danbooru_merge_index.py`
 - `tools/danbooru_tag_groups_review.md`
+
+## Danbooru 汉化词库（UI显示）
+- 词库文件：`promptcard/data/danbooru_zh_cn_lexicon.json`
+- 用途：仅影响下拉列表显示（中英对照），`prompt_pos` 输出仍为英文 tag。
+
+导出待翻译词条：
+```bash
+python3 tools/export_danbooru_untranslated_terms.py
+```
+会生成：`promptcard/data/danbooru_zh_cn_pending_terms.json`
+
+全量机器翻译（先并入公开词库，再补齐缺失）：
+```bash
+python3 tools/full_translate_danbooru_lexicon.py
+```

@@ -2,6 +2,7 @@ import random
 from typing import Dict, List, Tuple
 
 from ...PromptCardData import PROMPT_CARD_DATA
+from ...data.danbooru_i18n import format_label_display, format_tag_display, load_zh_cn_lexicon
 
 
 class LingPromptCardBase:
@@ -22,38 +23,68 @@ class LingPromptCardBase:
     def _build_config(cls) -> Dict[str, object]:
         node_data = cls.DATA_SOURCE.get(cls.NODE_KEY, {})
         raw_categories = node_data.get("categories", [])
+        zh_lexicon = load_zh_cn_lexicon()
 
         categories = []
+        used_display_labels = set()
         for idx, cat in enumerate(raw_categories, start=1):
             items = cat.get("items", [])
             if not items:
                 continue
 
-            label = str(cat.get("label", f"分类{idx}"))
+            label = str(cat.get("label", f"分类{idx}")).strip() or f"分类{idx}"
+            input_key = str(cat.get("input_key", label)).strip() or label
+            raw_display_label = str(cat.get("display_label", "")).strip()
+            if not raw_display_label:
+                raw_display_label = format_label_display(label, zh_lexicon)
+            display_label = raw_display_label
+            if display_label in used_display_labels:
+                display_label = f"{raw_display_label} [{label}]"
+            used_display_labels.add(display_label)
+
             item_options = ["(随机)"]
+            display_to_item: Dict[str, Dict[str, object]] = {}
+            raw_to_item: Dict[str, Dict[str, object]] = {}
+            used_item_options = set(item_options)
             for item_idx, item in enumerate(items, start=1):
                 item_title = str(item.get("title", f"条目{item_idx}")).strip()
                 if not item_title:
                     item_title = f"条目{item_idx}"
-                item_options.append(item_title)
+                display_title = str(item.get("display_title", "")).strip()
+                if not display_title:
+                    display_title = format_tag_display(item_title, zh_lexicon)
+                if display_title in used_item_options:
+                    if display_title != item_title:
+                        display_title = f"{display_title} [{item_title}]"
+                    else:
+                        display_title = f"{display_title} [{item_idx}]"
+                used_item_options.add(display_title)
+                item_options.append(display_title)
+                display_to_item[display_title] = item
+                raw_to_item[item_title] = item
 
             # 使用分类名作为输入键，便于在 UI 里直接看到分类。
             categories.append(
                 {
                     "label": label,
-                    "input_key": label,
+                    "display_label": display_label,
+                    "input_key": input_key,
                     "items": items,
                     "item_options": item_options,
+                    "display_to_item": display_to_item,
+                    "raw_to_item": raw_to_item,
                 }
             )
 
-        manual_options = ["(不指定)"] + [c["label"] for c in categories]
+        manual_options = ["(不指定)"] + [c["display_label"] for c in categories]
         label_map = {c["label"]: c for c in categories}
+        display_label_map = {c["display_label"]: c for c in categories}
 
         return {
             "categories": categories,
             "manual_options": manual_options,
             "label_map": label_map,
+            "display_label_map": display_label_map,
         }
 
     @classmethod
@@ -111,6 +142,7 @@ class LingPromptCardBase:
         config = self.__class__._get_config()
         categories: List[Dict[str, object]] = config["categories"]
         label_map: Dict[str, Dict[str, object]] = config["label_map"]
+        display_label_map: Dict[str, Dict[str, object]] = config["display_label_map"]
 
         mode = kwargs.get("模式选择", self.MODE_DEFAULT)
         manual_label = kwargs.get("分类", kwargs.get("手动分类", "(不指定)"))
@@ -130,7 +162,7 @@ class LingPromptCardBase:
         if use_category_scope:
             manual_cat = None
             if manual_label != "(不指定)":
-                manual_cat = label_map.get(manual_label)
+                manual_cat = display_label_map.get(manual_label) or label_map.get(manual_label)
                 if not manual_cat:
                     return ("", "")
 
@@ -148,10 +180,12 @@ class LingPromptCardBase:
                 selected_items = list(manual_cat["items"])
                 manual_item = kwargs.get(manual_cat["input_key"], "(随机)")
                 if manual_item != "(随机)":
-                    for item in manual_cat["items"]:
-                        if str(item.get("title", "")).strip() == manual_item:
-                            selected_items = [item]
-                            break
+                    display_item = manual_cat["display_to_item"].get(manual_item)
+                    raw_item = manual_cat["raw_to_item"].get(manual_item)
+                    if display_item is not None:
+                        selected_items = [display_item]
+                    elif raw_item is not None:
+                        selected_items = [raw_item]
 
         if not selected_items:
             return ("", "")
