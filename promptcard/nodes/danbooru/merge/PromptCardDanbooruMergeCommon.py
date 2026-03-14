@@ -1,5 +1,5 @@
 import random
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 from ....data.danbooru_i18n import format_label_display, format_tag_display, load_zh_cn_lexicon
 
@@ -13,6 +13,9 @@ class LingPromptCardMergeBase:
     RETURN_TYPES = ("STRING", "STRING")
     RETURN_NAMES = ("正面提示词", "负面提示词")
     DATA_SOURCE: Dict[str, Dict[str, object]] = {}
+    PREVIEW_UI_KEY = "lingpromptcard_tags_preview"
+    PREVIEW_EMPTY_PLACEHOLDER = "(空)"
+    PREVIEW_DISABLED_PLACEHOLDER = "(节点关闭)"
 
     _CACHED_CONFIG: Dict[str, object] = {}
 
@@ -107,9 +110,38 @@ class LingPromptCardMergeBase:
 
         return {"required": required_inputs}
 
-    def draw_prompt(self, **kwargs) -> Tuple[str, str]:
+    @classmethod
+    def _normalize_preview_text(cls, value: object) -> str:
+        if not isinstance(value, str):
+            return ""
+        normalized = value.strip()
+        while normalized.endswith(","):
+            normalized = normalized[:-1].rstrip()
+        return normalized
+
+    @classmethod
+    def _build_result(cls, prompt_pos: str, prompt_neg: str, *, enabled: bool = True) -> Dict[str, object]:
+        pos_preview = cls._normalize_preview_text(prompt_pos)
+        neg_preview = cls._normalize_preview_text(prompt_neg)
+        if not enabled:
+            preview_text = (
+                f"正面: {cls.PREVIEW_DISABLED_PLACEHOLDER}\n"
+                f"负面: {cls.PREVIEW_DISABLED_PLACEHOLDER}"
+            )
+        else:
+            preview_text = (
+                f"正面: {pos_preview or cls.PREVIEW_EMPTY_PLACEHOLDER}\n"
+                f"负面: {neg_preview or cls.PREVIEW_EMPTY_PLACEHOLDER}"
+            )
+
+        return {
+            "ui": {cls.PREVIEW_UI_KEY: [preview_text]},
+            "result": (prompt_pos, prompt_neg),
+        }
+
+    def draw_prompt(self, **kwargs) -> Dict[str, object]:
         if not kwargs.get("总开关", True):
-            return ("", "")
+            return self.__class__._build_result("", "", enabled=False)
 
         config = self.__class__._get_config()
         lists: List[Dict[str, object]] = config["lists"]
@@ -141,4 +173,4 @@ class LingPromptCardMergeBase:
             if value in row["raw_to_tag"]:
                 outputs.append(value)
 
-        return (", ".join(outputs), "")
+        return self.__class__._build_result(", ".join(outputs), "")

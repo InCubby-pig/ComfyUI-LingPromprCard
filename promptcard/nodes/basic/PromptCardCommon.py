@@ -1,5 +1,5 @@
 import random
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 from ...PromptCardData import PROMPT_CARD_DATA
 from ...data.danbooru_i18n import format_label_display, format_tag_display, load_zh_cn_lexicon
@@ -16,6 +16,9 @@ class LingPromptCardBase:
     MODE_OPTIONS = ("🔒 手动指定", "🎲 部分随机(手动优先)", "🔓 完全随机")
     MODE_DEFAULT = "🔒 手动指定"
     DATA_SOURCE = PROMPT_CARD_DATA
+    PREVIEW_UI_KEY = "lingpromptcard_tags_preview"
+    PREVIEW_EMPTY_PLACEHOLDER = "(空)"
+    PREVIEW_DISABLED_PLACEHOLDER = "(节点关闭)"
 
     _CACHED_CONFIG: Dict[str, object] = {}
 
@@ -135,9 +138,38 @@ class LingPromptCardBase:
 
         return {"required": required_inputs}
 
-    def draw_prompt(self, **kwargs) -> Tuple[str, str]:
+    @classmethod
+    def _normalize_preview_text(cls, value: object) -> str:
+        if not isinstance(value, str):
+            return ""
+        normalized = value.strip()
+        while normalized.endswith(","):
+            normalized = normalized[:-1].rstrip()
+        return normalized
+
+    @classmethod
+    def _build_result(cls, prompt_pos: str, prompt_neg: str, *, enabled: bool = True) -> Dict[str, object]:
+        pos_preview = cls._normalize_preview_text(prompt_pos)
+        neg_preview = cls._normalize_preview_text(prompt_neg)
+        if not enabled:
+            preview_text = (
+                f"正面: {cls.PREVIEW_DISABLED_PLACEHOLDER}\n"
+                f"负面: {cls.PREVIEW_DISABLED_PLACEHOLDER}"
+            )
+        else:
+            preview_text = (
+                f"正面: {pos_preview or cls.PREVIEW_EMPTY_PLACEHOLDER}\n"
+                f"负面: {neg_preview or cls.PREVIEW_EMPTY_PLACEHOLDER}"
+            )
+
+        return {
+            "ui": {cls.PREVIEW_UI_KEY: [preview_text]},
+            "result": (prompt_pos, prompt_neg),
+        }
+
+    def draw_prompt(self, **kwargs) -> Dict[str, object]:
         if not kwargs.get("总开关", True):
-            return ("", "")
+            return self.__class__._build_result("", "", enabled=False)
 
         config = self.__class__._get_config()
         categories: List[Dict[str, object]] = config["categories"]
@@ -154,7 +186,7 @@ class LingPromptCardBase:
             all_items.extend(cat["items"])
 
         if not all_items:
-            return ("", "")
+            return self.__class__._build_result("", "")
 
         selected_items = list(all_items)
         use_category_scope = mode != "🔓 完全随机"
@@ -164,7 +196,7 @@ class LingPromptCardBase:
             if manual_label != "(不指定)":
                 manual_cat = display_label_map.get(manual_label) or label_map.get(manual_label)
                 if not manual_cat:
-                    return ("", "")
+                    return self.__class__._build_result("", "")
 
             # 当用户直接在某个分类下拉里选了具体 item，自动以该分类为准。
             explicit_item_cats = []
@@ -188,13 +220,13 @@ class LingPromptCardBase:
                         selected_items = [raw_item]
 
         if not selected_items:
-            return ("", "")
+            return self.__class__._build_result("", "")
 
         chosen = rng.choice(selected_items)
         prompt_pos = chosen.get("prompt_pos", "")
         prompt_neg = chosen.get("prompt_neg", "")
         if not isinstance(prompt_pos, str):
-            return ("", "")
+            return self.__class__._build_result("", "")
         if not isinstance(prompt_neg, str):
             prompt_neg = ""
-        return (prompt_pos, prompt_neg)
+        return self.__class__._build_result(prompt_pos, prompt_neg)

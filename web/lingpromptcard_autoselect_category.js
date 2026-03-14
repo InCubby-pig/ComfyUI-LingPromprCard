@@ -6,6 +6,9 @@ const TARGET_NODE_NAMES = new Set([
     "LingPromptCardR18Scene",
     "LingPromptCardScene",
 ]);
+const PREVIEW_WIDGET_NAME = "tags预览";
+const PREVIEW_UI_KEY = "lingpromptcard_tags_preview";
+const PREVIEW_DEFAULT_TEXT = "正面: (等待执行)\n负面: (等待执行)";
 
 function isTargetNodeName(name) {
     if (!name) {
@@ -25,6 +28,79 @@ function getWidgetByName(node, name) {
         return null;
     }
     return node.widgets.find((widget) => widget?.name === name) || null;
+}
+
+function normalizePreviewText(value) {
+    if (typeof value === "string") {
+        return value;
+    }
+    if (Array.isArray(value) && typeof value[0] === "string") {
+        return value[0];
+    }
+    return "";
+}
+
+function extractPreviewFromMessage(message) {
+    if (!message || typeof message !== "object") {
+        return { found: false, text: "" };
+    }
+    if (Object.prototype.hasOwnProperty.call(message, PREVIEW_UI_KEY)) {
+        return { found: true, text: normalizePreviewText(message[PREVIEW_UI_KEY]) };
+    }
+    const ui = message.ui;
+    if (ui && typeof ui === "object" && Object.prototype.hasOwnProperty.call(ui, PREVIEW_UI_KEY)) {
+        return { found: true, text: normalizePreviewText(ui[PREVIEW_UI_KEY]) };
+    }
+    return { found: false, text: "" };
+}
+
+function ensurePreviewWidget(node) {
+    if (!node?.addWidget) {
+        return null;
+    }
+    const existing = getWidgetByName(node, PREVIEW_WIDGET_NAME);
+    if (existing) {
+        if (existing.inputEl) {
+            existing.inputEl.readOnly = true;
+            existing.inputEl.disabled = true;
+        }
+        return existing;
+    }
+
+    const widget = node.addWidget(
+        "text",
+        PREVIEW_WIDGET_NAME,
+        PREVIEW_DEFAULT_TEXT,
+        null,
+        { multiline: true },
+    );
+    if (!widget) {
+        return null;
+    }
+
+    widget.options = { ...(widget.options || {}), multiline: true, serialize: false };
+    widget.disabled = true;
+    if (widget.inputEl) {
+        widget.inputEl.readOnly = true;
+        widget.inputEl.disabled = true;
+    }
+    return widget;
+}
+
+function updatePreviewWidget(node, text) {
+    const widget = ensurePreviewWidget(node);
+    if (!widget) {
+        return;
+    }
+    const nextText = typeof text === "string" && text.length > 0 ? text : PREVIEW_DEFAULT_TEXT;
+    if (widget.value === nextText) {
+        return;
+    }
+    widget.value = nextText;
+    if (widget.inputEl) {
+        widget.inputEl.value = nextText;
+    }
+    node?.setDirtyCanvas?.(true, true);
 }
 
 function getCategoryLabels(categoryWidget) {
@@ -69,7 +145,15 @@ app.registerExtension({
         const originalOnConfigure = nodeType.prototype.onConfigure;
         nodeType.prototype.onConfigure = function (...args) {
             const result = originalOnConfigure ? originalOnConfigure.apply(this, args) : undefined;
+            ensurePreviewWidget(this);
             syncCategoryBySelectedItem(this);
+            return result;
+        };
+
+        const originalOnNodeCreated = nodeType.prototype.onNodeCreated;
+        nodeType.prototype.onNodeCreated = function (...args) {
+            const result = originalOnNodeCreated ? originalOnNodeCreated.apply(this, args) : undefined;
+            ensurePreviewWidget(this);
             return result;
         };
 
@@ -105,6 +189,16 @@ app.registerExtension({
                 this.setDirtyCanvas?.(true, true);
             } finally {
                 this.__lingPromptCardSyncing = false;
+            }
+            return result;
+        };
+
+        const originalOnExecuted = nodeType.prototype.onExecuted;
+        nodeType.prototype.onExecuted = function (message) {
+            const result = originalOnExecuted ? originalOnExecuted.call(this, message) : undefined;
+            const preview = extractPreviewFromMessage(message);
+            if (preview.found) {
+                updatePreviewWidget(this, preview.text);
             }
             return result;
         };
