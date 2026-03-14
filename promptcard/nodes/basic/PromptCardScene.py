@@ -3,7 +3,7 @@ from .PromptCardCommon import LingPromptCardBase
 
 class LingPromptCardScene(LingPromptCardBase):
     NODE_KEY = "scene_hint"
-    CATEGORY = "lingpromptcard/cards"
+    CATEGORY = "lingpromptcard/cards/basic"
 
 
 NODE_CLASS_MAPPINGS = {

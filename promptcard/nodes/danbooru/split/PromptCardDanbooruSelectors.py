@@ -16,7 +16,7 @@ for spec in DANBOORU_SELECTOR_SPECS:
         (LingPromptCardBase,),
         {
             "NODE_KEY": node_key,
-            "CATEGORY": "lingpromptcard/cards",
+            "CATEGORY": "lingpromptcard/cards/danbooru/split",
             "DATA_SOURCE": DANBOORU_SELECTOR_DATA,
             "__doc__": f"Danbooru 细分抽卡器: {display_name}",
         },

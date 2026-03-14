@@ -3,7 +3,7 @@ from .PromptCardCommon import LingPromptCardBase
 
 class LingPromptCardCostume(LingPromptCardBase):
     NODE_KEY = "costume"
-    CATEGORY = "lingpromptcard/cards"
+    CATEGORY = "lingpromptcard/cards/basic"
 
 
 NODE_CLASS_MAPPINGS = {

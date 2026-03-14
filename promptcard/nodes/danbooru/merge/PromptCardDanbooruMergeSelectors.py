@@ -16,7 +16,7 @@ for spec in DANBOORU_MERGE_SELECTOR_SPECS:
         (LingPromptCardMergeBase,),
         {
             "NODE_KEY": node_key,
-            "CATEGORY": "lingpromptcard/cards",
+            "CATEGORY": "lingpromptcard/cards/danbooru/merge",
             "DATA_SOURCE": DANBOORU_MERGE_SELECTOR_DATA,
             "__doc__": f"Danbooru 合并抽卡器: {display_name}",
         },

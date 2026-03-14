@@ -21,6 +21,9 @@
 1. 将本仓库放入：`<ComfyUI>/custom_nodes/ComfyUI-LingPromptCard/`
 2. 重启 ComfyUI
 3. 在 `lingpromptcard/cards` 分类下使用节点
+   - 基础节点：`lingpromptcard/cards/basic`
+   - Danbooru细分：`lingpromptcard/cards/danbooru/split`
+   - Danbooru合并：`lingpromptcard/cards/danbooru/merge`
 
 ## 开发校验
 ```bash
